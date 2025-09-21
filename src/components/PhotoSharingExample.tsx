@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react'
-import { Upload, Image, Resize, Bell, Tag, Users, ArrowRight } from 'lucide-react'
+import { Upload, Image, Crop, Bell, Tag, Users, ArrowRight } from 'lucide-react'
 export function PhotoSharingExample() {
   const [activeStep, setActiveStep] = useState(0)
   const [processingSteps, setProcessingSteps] = useState<number[]>([])
@@ -24,7 +24,7 @@ export function PhotoSharingExample() {
       id: 'resize',
       title: 'Resize Function',
       description: 'Creates thumbnails and different sizes',
-      icon: Resize,
+      icon: Crop,
       color: 'green',
       type: 'handler'
     },
