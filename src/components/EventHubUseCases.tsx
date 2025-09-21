@@ -53,6 +53,17 @@ export function EventHubUseCases() {
     }
     return colorMap[color as keyof typeof colorMap] || colorMap.blue
   }
+  const renderActiveUseCaseIcon = () => {
+    const activeUseCaseData = useCases[activeUseCase]
+    const IconComponent = activeUseCaseData.icon
+    return <IconComponent className={`w-8 h-8 ${getColorClasses(activeUseCaseData.color).text}`} />
+  }
+  const renderUseCaseIcon = (useCase: typeof useCases[0], isActive: boolean) => {
+    const IconComponent = useCase.icon
+    return <IconComponent className={`w-8 h-8 mb-3 ${
+      isActive ? getColorClasses(useCase.color).text : 'text-gray-500'
+    }`} />
+  }
   return (
     <div className="bg-white p-8 rounded-xl shadow-sm border">
       <h3 className="text-2xl font-bold mb-6 text-gray-900">🎯 Event Hub Use Cases</h3>
@@ -68,11 +79,7 @@ export function EventHubUseCases() {
                 : 'border-gray-200 bg-gray-50 hover:bg-gray-100'
             }`}
           >
-            <useCase.icon className={`w-8 h-8 mb-3 ${
-              activeUseCase === index
-                ? getColorClasses(useCase.color).text
-                : 'text-gray-500'
-            }`} />
+            {renderUseCaseIcon(useCase, activeUseCase === index)}
             <h4 className="font-semibold text-gray-900 mb-2">{useCase.title}</h4>
             <div className="text-xs bg-gray-200 px-2 py-1 rounded mb-2">
               {useCase.scale}
@@ -83,7 +90,7 @@ export function EventHubUseCases() {
       <div className="bg-gradient-to-r from-gray-50 to-gray-100 p-6 rounded-lg border">
         <div className="flex items-start space-x-4">
           <div className={`w-16 h-16 ${getColorClasses(useCases[activeUseCase].color).light} rounded-lg flex items-center justify-center`}>
-            <useCases[activeUseCase].icon className={`w-8 h-8 ${getColorClasses(useCases[activeUseCase].color).text}`} />
+            {renderActiveUseCaseIcon()}
           </div>
           <div className="flex-1">
             <h4 className="text-xl font-semibold text-gray-900 mb-2">
