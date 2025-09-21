@@ -93,6 +93,11 @@ export function EventGridConcepts() {
     }
     return colorMap[color as keyof typeof colorMap] || 'text-blue-600'
   }
+  const renderActiveIcon = () => {
+    const activeConceptData = concepts[activeConcept]
+    const IconComponent = activeConceptData.icon
+    return <IconComponent className={`w-6 h-6 ${getTextColorClass(activeConceptData.color)}`} />
+  }
   return (
     <div className="bg-white p-8 rounded-xl shadow-sm border">
       <h3 className="text-2xl font-bold mb-6 text-gray-900">🏗️ Key Concepts in Event Grid</h3>
@@ -121,10 +126,7 @@ export function EventGridConcepts() {
       <div className="bg-gradient-to-r from-gray-50 to-gray-100 p-6 rounded-lg border">
         <div className="flex items-start space-x-4">
           <div className={`w-12 h-12 ${getBgColorClass(concepts[activeConcept].color)} rounded-lg flex items-center justify-center`}>
-            {(() => {
-              const IconComponent = concepts[activeConcept].icon
-              return <IconComponent className={`w-6 h-6 ${getTextColorClass(concepts[activeConcept].color)}`} />
-            })()}
+            {renderActiveIcon()}
           </div>
           <div className="flex-1">
             <h4 className="text-xl font-semibold text-gray-900 mb-2">

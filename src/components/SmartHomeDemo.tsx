@@ -3,10 +3,10 @@ import { Home, Lightbulb, Thermometer, Lock, Shield, Smartphone, Zap } from 'luc
 export function SmartHomeDemo() {
   const [activeEvent, setActiveEvent] = useState(0)
   const events = [
-    { id: 'motion', title: 'Motion Detected', icon: Shield, color: 'bg-red-500' },
-    { id: 'light', title: 'Light Turned On', icon: Lightbulb, color: 'bg-yellow-500' },
-    { id: 'thermostat', title: 'Thermostat Adjusted', icon: Thermometer, color: 'bg-blue-500' },
-    { id: 'door', title: 'Door Unlocked', icon: Lock, color: 'bg-green-500' }
+    { id: 'motion', title: 'Motion Detected', icon: Shield, color: 'red' },
+    { id: 'light', title: 'Light Turned On', icon: Lightbulb, color: 'yellow' },
+    { id: 'thermostat', title: 'Thermostat Adjusted', icon: Thermometer, color: 'blue' },
+    { id: 'door', title: 'Door Unlocked', icon: Lock, color: 'green' }
   ]
   const consumers = [
     { id: 'lights', title: 'Smart Lights', icon: Lightbulb, responds: ['motion', 'door'] },
@@ -24,6 +24,21 @@ export function SmartHomeDemo() {
     const currentEvent = events[activeEvent]
     const consumer = consumers.find(c => c.id === consumerId)
     return consumer?.responds.includes(currentEvent.id) || false
+  }
+  const getColorClasses = (color: string) => {
+    const colorMap = {
+      red: { bg: 'bg-red-500', light: 'bg-red-100', text: 'text-red-600', border: 'border-red-300' },
+      yellow: { bg: 'bg-yellow-500', light: 'bg-yellow-100', text: 'text-yellow-600', border: 'border-yellow-300' },
+      blue: { bg: 'bg-blue-500', light: 'bg-blue-100', text: 'text-blue-600', border: 'border-blue-300' },
+      green: { bg: 'bg-green-500', light: 'bg-green-100', text: 'text-green-600', border: 'border-green-300' },
+      purple: { bg: 'bg-purple-500', light: 'bg-purple-100', text: 'text-purple-600', border: 'border-purple-300' }
+    }
+    return colorMap[color as keyof typeof colorMap] || colorMap.blue
+  }
+  const renderActiveEventIcon = () => {
+    const currentEvent = events[activeEvent]
+    const IconComponent = currentEvent.icon
+    return <IconComponent className="w-4 h-4 text-white" />
   }
   return (
     <div className="bg-white p-8 rounded-xl shadow-sm border">
@@ -47,7 +62,9 @@ export function SmartHomeDemo() {
                 >
                   <div className="flex items-center space-x-3">
                     <div className={`w-10 h-10 rounded-full flex items-center justify-center ${
-                      activeEvent === index ? event.color : 'bg-gray-300'
+                      activeEvent === index ? event.color === 'red' ? 'bg-red-500' : 
+                      event.color === 'yellow' ? 'bg-yellow-500' :
+                      event.color === 'blue' ? 'bg-blue-500' : 'bg-green-500' : 'bg-gray-300'
                     }`}>
                       <event.icon className="w-5 h-5 text-white" />
                     </div>
@@ -110,8 +127,12 @@ export function SmartHomeDemo() {
           <div>
             <h5 className="font-semibold text-purple-900 mb-3">Current Event:</h5>
             <div className="flex items-center space-x-3">
-              <div className={`w-8 h-8 rounded-full flex items-center justify-center ${events[activeEvent].color}`}>
-                <events[activeEvent].icon className="w-4 h-4 text-white" />
+              <div className={`w-8 h-8 rounded-full flex items-center justify-center ${
+                events[activeEvent].color === 'red' ? 'bg-red-500' :
+                events[activeEvent].color === 'yellow' ? 'bg-yellow-500' :
+                events[activeEvent].color === 'blue' ? 'bg-blue-500' : 'bg-green-500'
+              }`}>
+                {renderActiveEventIcon()}
               </div>
               <span className="font-medium text-purple-900">{events[activeEvent].title}</span>
             </div>
@@ -132,8 +153,8 @@ export function SmartHomeDemo() {
         </div>
       </div>
       <div className="mt-6 p-4 bg-yellow-50 rounded-lg border border-yellow-200">
-        <div className="flex items-center space-x-3">
-          <Zap className="w-5 h-5 text-yellow-600" />
+        <div className="flex items-start space-x-3">
+          <Zap className="w-5 h-5 text-yellow-600 mt-1" />
           <div>
             <h5 className="font-semibold text-yellow-900">Event Grid Magic</h5>
             <p className="text-yellow-800 text-sm">
