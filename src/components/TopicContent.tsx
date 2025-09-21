@@ -23,6 +23,10 @@ import { ServicesComparison } from './ServicesComparison'
 import { DetailedComparison } from './DetailedComparison'
 import { RetailStoreExample } from './RetailStoreExample'
 import { DecisionMatrix } from './DecisionMatrix'
+import { OrderProcessingArchitecture } from './OrderProcessingArchitecture'
+import { TraditionalVsEventDriven } from './TraditionalVsEventDriven'
+import { BlackFridayScenario } from './BlackFridayScenario'
+import { EventDrivenBenefits } from './EventDrivenBenefits'
 interface Topic {
   id: string
   title: string
@@ -456,10 +460,74 @@ export function TopicContent({ topic }: TopicContentProps) {
         )
       case 'architecture-example':
         return (
-          <div className="space-y-8">
+          <div className="space-y-12">
+            {/* Hero Section */}
+            <div className="bg-gradient-to-r from-indigo-600 to-purple-600 text-white p-8 rounded-xl">
+              <h2 className="text-3xl font-bold mb-4">Architecture Example – Real-Time Order Processing</h2>
+              <p className="text-xl opacity-90 mb-6">
+                Bringing it all together with a real-world scenario
+              </p>
+              <div className="bg-white/10 p-4 rounded-lg">
+                <p className="text-lg">
+                  🛒 <strong>Scenario:</strong> Online retail store where customers place orders using event-driven architecture
+                </p>
+              </div>
+            </div>
+            {/* Traditional vs Event-Driven */}
+            <TraditionalVsEventDriven />
+            {/* Main Architecture Diagram */}
+            <OrderProcessingArchitecture />
+            {/* Event-Driven Benefits */}
+            <EventDrivenBenefits />
+            {/* Black Friday Scenario */}
+            <BlackFridayScenario />
+            {/* Summary */}
             <div className="bg-white p-8 rounded-xl shadow-sm border">
-              <h2 className="text-2xl font-bold mb-6 text-gray-900">Real-Time Order Processing</h2>
-              <ArchitectureDiagram />
+              <h3 className="text-2xl font-bold mb-6 text-gray-900">🎯 Architecture Summary</h3>
+              <div className="grid md:grid-cols-2 gap-8">
+                <div className="space-y-4">
+                  <h4 className="text-lg font-semibold text-gray-900">What We Achieved:</h4>
+                  <ul className="space-y-3">
+                    <li className="flex items-start space-x-3">
+                      <div className="w-2 h-2 bg-green-500 rounded-full mt-2"></div>
+                      <span className="text-gray-700">Event Grid acts as the dispatcher</span>
+                    </li>
+                    <li className="flex items-start space-x-3">
+                      <div className="w-2 h-2 bg-green-500 rounded-full mt-2"></div>
+                      <span className="text-gray-700">Azure Functions process events elastically</span>
+                    </li>
+                    <li className="flex items-start space-x-3">
+                      <div className="w-2 h-2 bg-green-500 rounded-full mt-2"></div>
+                      <span className="text-gray-700">Storage systems hold order data</span>
+                    </li>
+                    <li className="flex items-start space-x-3">
+                      <div className="w-2 h-2 bg-green-500 rounded-full mt-2"></div>
+                      <span className="text-gray-700">Multiple subscribers react independently</span>
+                    </li>
+                  </ul>
+                </div>
+                <div className="space-y-4">
+                  <h4 className="text-lg font-semibold text-gray-900">Key Benefits:</h4>
+                  <div className="grid grid-cols-2 gap-4">
+                    <div className="text-center p-4 bg-blue-50 rounded-lg border border-blue-200">
+                      <div className="font-semibold text-blue-900">Resilient</div>
+                      <div className="text-xs text-blue-700">Fault tolerant</div>
+                    </div>
+                    <div className="text-center p-4 bg-green-50 rounded-lg border border-green-200">
+                      <div className="font-semibold text-green-900">Scalable</div>
+                      <div className="text-xs text-green-700">Auto-scaling</div>
+                    </div>
+                    <div className="text-center p-4 bg-purple-50 rounded-lg border border-purple-200">
+                      <div className="font-semibold text-purple-900">Flexible</div>
+                      <div className="text-xs text-purple-700">Easy to extend</div>
+                    </div>
+                    <div className="text-center p-4 bg-orange-50 rounded-lg border border-orange-200">
+                      <div className="font-semibold text-orange-900">Cloud-Native</div>
+                      <div className="text-xs text-orange-700">Modern solution</div>
+                    </div>
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
         )
