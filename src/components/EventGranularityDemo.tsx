@@ -1,8 +1,27 @@
 import { useState } from 'react'
 import { User, AlertTriangle, CheckCircle, Target } from 'lucide-react'
+interface EventData {
+  name: string
+  data: string[]
+}
+interface ScenarioBase {
+  title: string
+  color: string
+  icon: typeof AlertTriangle | typeof CheckCircle
+  events: EventData[]
+}
+interface ProblemsScenario extends ScenarioBase {
+  problems: string[]
+  benefits?: never
+}
+interface BenefitsScenario extends ScenarioBase {
+  benefits: string[]
+  problems?: never
+}
+type Scenario = ProblemsScenario | BenefitsScenario
 export function EventGranularityDemo() {
   const [granularityType, setGranularityType] = useState<'coarse' | 'fine' | 'balanced'>('coarse')
-  const scenarios = {
+  const scenarios: Record<'coarse' | 'fine' | 'balanced', Scenario> = {
     coarse: {
       title: 'Too Coarse',
       color: 'red',
@@ -10,10 +29,10 @@ export function EventGranularityDemo() {
       events: [
         {
           name: 'CustomerUpdated',
-          data: ['name', 'email', 'address', 'phone', 'preferences', 'billing'],
-          problems: ['Unnecessary data transfer', 'Inefficient processing', 'Privacy concerns']
+          data: ['name', 'email', 'address', 'phone', 'preferences', 'billing']
         }
-      ]
+      ],
+      problems: ['Unnecessary data transfer', 'Inefficient processing', 'Privacy concerns']
     },
     fine: {
       title: 'Too Fine',
@@ -50,6 +69,7 @@ export function EventGranularityDemo() {
     return colorMap[color as keyof typeof colorMap] || colorMap.green
   }
   const currentScenario = scenarios[granularityType]
+  const items = 'problems' in currentScenario ? currentScenario.problems : currentScenario.benefits
   return (
     <div className="bg-white p-8 rounded-xl shadow-sm border">
       <h3 className="text-2xl font-bold mb-6 text-gray-900">🎯 Event Granularity: Finding the Sweet Spot</h3>
@@ -115,7 +135,7 @@ export function EventGranularityDemo() {
               {granularityType === 'balanced' ? 'Benefits:' : 'Problems:'}
             </h5>
             <ul className="space-y-2">
-              {(currentScenario.problems || currentScenario.benefits)?.map((item, index) => (
+              {items.map((item, index) => (
                 <li key={index} className="flex items-start space-x-2">
                   <div className={`w-2 h-2 ${getColorClasses(currentScenario.color).bg} rounded-full mt-2`}></div>
                   <span className="text-gray-700 text-sm">{item}</span>
