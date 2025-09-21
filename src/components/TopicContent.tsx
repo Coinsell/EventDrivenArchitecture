@@ -1,4 +1,4 @@
-import { Clock, Users, Target, Lightbulb, ArrowRight, Zap, Database, Settings, ShoppingCart } from 'lucide-react'
+import { Clock, Users, Target, Lightbulb, ArrowRight, Zap, Database, Settings, ShoppingCart, Shield } from 'lucide-react'
 import { ArchitectureDiagram } from './ArchitectureDiagram'
 import { ComparisonTable } from './ComparisonTable'
 import { AnimatedFlow } from './AnimatedFlow'
