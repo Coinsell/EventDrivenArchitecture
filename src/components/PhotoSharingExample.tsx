@@ -80,13 +80,13 @@ export function PhotoSharingExample() {
             <div className={`w-16 h-16 rounded-lg flex items-center justify-center transition-all duration-500 ${
               activeStep >= 0 ? getColorClasses(workflow[0].color).bg : 'bg-gray-200'
             }`}>
-              <workflow[0].icon className="w-8 h-8 text-white" />
+              <Upload className="w-8 h-8 text-white" />
             </div>
             <ArrowRight className={`w-6 h-6 ${activeStep >= 1 ? 'text-blue-500' : 'text-gray-300'}`} />
             <div className={`w-16 h-16 rounded-lg flex items-center justify-center transition-all duration-500 ${
               activeStep >= 1 ? getColorClasses(workflow[1].color).bg : 'bg-gray-200'
             }`}>
-              <workflow[1].icon className="w-8 h-8 text-white" />
+              <Image className="w-8 h-8 text-white" />
             </div>
           </div>
         </div>

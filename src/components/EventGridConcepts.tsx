@@ -75,6 +75,24 @@ export function EventGridConcepts() {
     }
     return colorMap[color as keyof typeof colorMap]?.[type] || ''
   }
+  const getBgColorClass = (color: string) => {
+    const colorMap = {
+      blue: 'bg-blue-100',
+      yellow: 'bg-yellow-100',
+      green: 'bg-green-100',
+      purple: 'bg-purple-100'
+    }
+    return colorMap[color as keyof typeof colorMap] || 'bg-blue-100'
+  }
+  const getTextColorClass = (color: string) => {
+    const colorMap = {
+      blue: 'text-blue-600',
+      yellow: 'text-yellow-600',
+      green: 'text-green-600',
+      purple: 'text-purple-600'
+    }
+    return colorMap[color as keyof typeof colorMap] || 'text-blue-600'
+  }
   return (
     <div className="bg-white p-8 rounded-xl shadow-sm border">
       <h3 className="text-2xl font-bold mb-6 text-gray-900">🏗️ Key Concepts in Event Grid</h3>
@@ -102,8 +120,11 @@ export function EventGridConcepts() {
       </div>
       <div className="bg-gradient-to-r from-gray-50 to-gray-100 p-6 rounded-lg border">
         <div className="flex items-start space-x-4">
-          <div className={`w-12 h-12 ${getColorClasses(concepts[activeConcept].color, 'bg')} rounded-lg flex items-center justify-center`}>
-            <concepts[activeConcept].icon className={`w-6 h-6 ${getColorClasses(concepts[activeConcept].color, 'text')}`} />
+          <div className={`w-12 h-12 ${getBgColorClass(concepts[activeConcept].color)} rounded-lg flex items-center justify-center`}>
+            {(() => {
+              const IconComponent = concepts[activeConcept].icon
+              return <IconComponent className={`w-6 h-6 ${getTextColorClass(concepts[activeConcept].color)}`} />
+            })()}
           </div>
           <div className="flex-1">
             <h4 className="text-xl font-semibold text-gray-900 mb-2">
@@ -115,7 +136,7 @@ export function EventGridConcepts() {
               <ul className="space-y-2">
                 {concepts[activeConcept].examples.map((example, index) => (
                   <li key={index} className="flex items-start space-x-2">
-                    <div className={`w-2 h-2 ${getColorClasses(concepts[activeConcept].color, 'bg')} rounded-full mt-2`}></div>
+                    <div className={`w-2 h-2 ${getBgColorClass(concepts[activeConcept].color)} rounded-full mt-2`}></div>
                     <span className="text-gray-700 text-sm">{example}</span>
                   </li>
                 ))}
