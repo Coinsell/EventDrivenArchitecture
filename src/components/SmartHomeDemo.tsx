@@ -40,6 +40,14 @@ export function SmartHomeDemo() {
     const IconComponent = currentEvent.icon
     return <IconComponent className="w-4 h-4 text-white" />
   }
+  const renderEventIcon = (event: typeof events[0], isActive: boolean) => {
+    const IconComponent = event.icon
+    return <IconComponent className="w-5 h-5 text-white" />
+  }
+  const renderConsumerIcon = (consumer: typeof consumers[0], size: string = "w-5 h-5") => {
+    const IconComponent = consumer.icon
+    return <IconComponent className={`${size} text-white`} />
+  }
   return (
     <div className="bg-white p-8 rounded-xl shadow-sm border">
       <h3 className="text-2xl font-bold mb-6 text-gray-900">🏠 Exercise: Smart Home System</h3>
@@ -62,11 +70,9 @@ export function SmartHomeDemo() {
                 >
                   <div className="flex items-center space-x-3">
                     <div className={`w-10 h-10 rounded-full flex items-center justify-center ${
-                      activeEvent === index ? event.color === 'red' ? 'bg-red-500' : 
-                      event.color === 'yellow' ? 'bg-yellow-500' :
-                      event.color === 'blue' ? 'bg-blue-500' : 'bg-green-500' : 'bg-gray-300'
+                      activeEvent === index ? getColorClasses(event.color).bg : 'bg-gray-300'
                     }`}>
-                      <event.icon className="w-5 h-5 text-white" />
+                      {renderEventIcon(event, activeEvent === index)}
                     </div>
                     <div>
                       <div className="font-medium text-gray-900">{event.title}</div>
@@ -100,7 +106,7 @@ export function SmartHomeDemo() {
                       <div className={`w-10 h-10 rounded-full flex items-center justify-center ${
                         isConsumerActive(consumer.id) ? 'bg-green-500' : 'bg-gray-300'
                       }`}>
-                        <consumer.icon className="w-5 h-5 text-white" />
+                        {renderConsumerIcon(consumer)}
                       </div>
                       <div>
                         <div className="font-medium text-gray-900">{consumer.title}</div>
@@ -128,9 +134,7 @@ export function SmartHomeDemo() {
             <h5 className="font-semibold text-purple-900 mb-3">Current Event:</h5>
             <div className="flex items-center space-x-3">
               <div className={`w-8 h-8 rounded-full flex items-center justify-center ${
-                events[activeEvent].color === 'red' ? 'bg-red-500' :
-                events[activeEvent].color === 'yellow' ? 'bg-yellow-500' :
-                events[activeEvent].color === 'blue' ? 'bg-blue-500' : 'bg-green-500'
+                getColorClasses(events[activeEvent].color).bg
               }`}>
                 {renderActiveEventIcon()}
               </div>
@@ -144,7 +148,7 @@ export function SmartHomeDemo() {
                 .filter(consumer => isConsumerActive(consumer.id))
                 .map(consumer => (
                   <div key={consumer.id} className="flex items-center space-x-2 bg-green-100 px-3 py-1 rounded-full">
-                    <consumer.icon className="w-3 h-3 text-green-600" />
+                    {renderConsumerIcon(consumer, "w-3 h-3")}
                     <span className="text-xs text-green-800">{consumer.title}</span>
                   </div>
                 ))}
