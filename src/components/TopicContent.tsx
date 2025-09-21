@@ -31,6 +31,10 @@ import { DesignPrinciples } from './DesignPrinciples'
 import { LooseCouplingDemo } from './LooseCouplingDemo'
 import { EventGranularityDemo } from './EventGranularityDemo'
 import { IdempotencyDemo } from './IdempotencyDemo'
+import { EventRoutingFiltering } from './EventRoutingFiltering'
+import { FilteringMechanisms } from './FilteringMechanisms'
+import { RidesharingExample } from './RidesharingExample'
+import { BestPracticesRouting } from './BestPracticesRouting'
 interface Topic {
   id: string
   title: string
@@ -620,6 +624,78 @@ export function TopicContent({ topic }: TopicContentProps) {
                 <p className="text-emerald-800">
                   Follow these principles, and your app will be <strong>scalable</strong>, <strong>maintainable</strong>, 
                   and <strong>robust</strong> — exactly what we need in modern cloud architectures.
+                </p>
+              </div>
+            </div>
+          </div>
+        )
+      case 'routing-filtering':
+        return (
+          <div className="space-y-12">
+            {/* Hero Section */}
+            <div className="bg-gradient-to-r from-teal-600 to-cyan-600 text-white p-8 rounded-xl">
+              <h2 className="text-3xl font-bold mb-4">Event Routing & Filtering</h2>
+              <p className="text-xl opacity-90 mb-6">
+                Advanced filtering, event domains, and smart routing to ensure events reach the right consumers
+              </p>
+              <div className="bg-white/10 p-4 rounded-lg">
+                <p className="text-lg">
+                  🎯 <strong>Key Insight:</strong> Without proper routing and filtering, consumers get overwhelmed with irrelevant events
+                </p>
+              </div>
+            </div>
+            {/* Main Routing & Filtering Demo */}
+            <EventRoutingFiltering />
+            {/* Filtering Mechanisms */}
+            <FilteringMechanisms />
+            {/* Ridesharing Example */}
+            <RidesharingExample />
+            {/* Best Practices */}
+            <BestPracticesRouting />
+            {/* Summary */}
+            <div className="bg-white p-8 rounded-xl shadow-sm border">
+              <h3 className="text-2xl font-bold mb-6 text-gray-900">🎯 Key Takeaways</h3>
+              <div className="grid md:grid-cols-2 gap-8">
+                <div className="space-y-4">
+                  <h4 className="text-lg font-semibold text-gray-900">Routing Ensures:</h4>
+                  <ul className="space-y-3">
+                    <li className="flex items-start space-x-3">
+                      <div className="w-2 h-2 bg-blue-500 rounded-full mt-2"></div>
+                      <span className="text-gray-700">Events reach the correct subscribers</span>
+                    </li>
+                    <li className="flex items-start space-x-3">
+                      <div className="w-2 h-2 bg-blue-500 rounded-full mt-2"></div>
+                      <span className="text-gray-700">Decoupled producer-consumer relationships</span>
+                    </li>
+                    <li className="flex items-start space-x-3">
+                      <div className="w-2 h-2 bg-blue-500 rounded-full mt-2"></div>
+                      <span className="text-gray-700">Multiple consumers can process same events</span>
+                    </li>
+                  </ul>
+                </div>
+                <div className="space-y-4">
+                  <h4 className="text-lg font-semibold text-gray-900">Filtering Provides:</h4>
+                  <ul className="space-y-3">
+                    <li className="flex items-start space-x-3">
+                      <div className="w-2 h-2 bg-green-500 rounded-full mt-2"></div>
+                      <span className="text-gray-700">Subscribers only get relevant events</span>
+                    </li>
+                    <li className="flex items-start space-x-3">
+                      <div className="w-2 h-2 bg-green-500 rounded-full mt-2"></div>
+                      <span className="text-gray-700">Improved system efficiency and performance</span>
+                    </li>
+                    <li className="flex items-start space-x-3">
+                      <div className="w-2 h-2 bg-green-500 rounded-full mt-2"></div>
+                      <span className="text-gray-700">Reduced processing overhead and costs</span>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+              <div className="mt-8 p-6 bg-gradient-to-r from-teal-50 to-cyan-50 rounded-lg border border-teal-200">
+                <h5 className="font-semibold text-teal-900 mb-3">🚀 Combined Power</h5>
+                <p className="text-teal-800">
+                  <strong>Routing + Filtering</strong> together enable you to build highly scalable and decoupled 
+                  event-driven applications that are both efficient and maintainable.
                 </p>
               </div>
             </div>
