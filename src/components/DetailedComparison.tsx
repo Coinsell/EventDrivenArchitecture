@@ -60,6 +60,17 @@ export function DetailedComparison() {
     }
     return colorMap[service as keyof typeof colorMap] || 'text-gray-600 bg-gray-50 border-gray-200'
   }
+  const renderActiveFeatureIcon = () => {
+    const activeFeatureData = comparisonFeatures[activeFeature]
+    const IconComponent = activeFeatureData.icon
+    return <IconComponent className="w-8 h-8 text-purple-600" />
+  }
+  const renderFeatureIcon = (feature: typeof comparisonFeatures[0], isActive: boolean) => {
+    const IconComponent = feature.icon
+    return <IconComponent className={`w-6 h-6 mx-auto mb-2 ${
+      isActive ? 'text-purple-600' : 'text-gray-500'
+    }`} />
+  }
   return (
     <div className="bg-white p-8 rounded-xl shadow-sm border">
       <h3 className="text-2xl font-bold mb-6 text-gray-900">⚖️ Side-by-Side Feature Comparison</h3>
@@ -74,16 +85,14 @@ export function DetailedComparison() {
                 : 'border-gray-200 bg-gray-50 hover:bg-gray-100'
             }`}
           >
-            <feature.icon className={`w-6 h-6 mx-auto mb-2 ${
-              activeFeature === index ? 'text-purple-600' : 'text-gray-500'
-            }`} />
+            {renderFeatureIcon(feature, activeFeature === index)}
             <div className="text-sm font-medium text-gray-900">{feature.feature}</div>
           </button>
         ))}
       </div>
       <div className="bg-gradient-to-r from-purple-50 to-pink-50 p-6 rounded-lg border border-purple-200">
         <div className="flex items-center space-x-4 mb-4">
-          <comparisonFeatures[activeFeature].icon className="w-8 h-8 text-purple-600" />
+          {renderActiveFeatureIcon()}
           <div>
             <h4 className="text-xl font-semibold text-gray-900">
               {comparisonFeatures[activeFeature].feature}

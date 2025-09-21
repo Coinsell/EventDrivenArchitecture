@@ -81,6 +81,17 @@ export function ServicesComparison() {
     }
     return colorMap[color as keyof typeof colorMap] || colorMap.blue
   }
+  const renderActiveServiceIcon = () => {
+    const activeServiceData = services[activeService]
+    const IconComponent = activeServiceData.icon
+    return <IconComponent className={`w-10 h-10 ${getColorClasses(activeServiceData.color).text}`} />
+  }
+  const renderServiceIcon = (service: typeof services[0], isActive: boolean) => {
+    const IconComponent = service.icon
+    return <IconComponent className={`w-12 h-12 mb-4 ${
+      isActive ? getColorClasses(service.color).text : 'text-gray-500'
+    }`} />
+  }
   return (
     <div className="bg-white p-8 rounded-xl shadow-sm border">
       <h3 className="text-2xl font-bold mb-6 text-gray-900">📊 Azure Messaging Services Overview</h3>
@@ -98,11 +109,7 @@ export function ServicesComparison() {
                 : 'border-gray-200 bg-gray-50 hover:bg-gray-100'
             }`}
           >
-            <service.icon className={`w-12 h-12 mb-4 ${
-              activeService === index
-                ? getColorClasses(service.color).text
-                : 'text-gray-500'
-            }`} />
+            {renderServiceIcon(service, activeService === index)}
             <h4 className="font-bold text-gray-900 mb-2">{service.name}</h4>
             <p className="text-sm font-medium text-gray-700 mb-2">{service.tagline}</p>
             <p className="text-xs text-gray-600">{service.description}</p>
@@ -112,7 +119,7 @@ export function ServicesComparison() {
       <div className="bg-gradient-to-r from-gray-50 to-gray-100 p-6 rounded-lg border">
         <div className="flex items-start space-x-6">
           <div className={`w-20 h-20 ${getColorClasses(services[activeService].color).light} rounded-xl flex items-center justify-center`}>
-            <services[activeService].icon className={`w-10 h-10 ${getColorClasses(services[activeService].color).text}`} />
+            {renderActiveServiceIcon()}
           </div>
           <div className="flex-1">
             <h4 className="text-2xl font-bold text-gray-900 mb-2">
