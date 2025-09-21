@@ -69,7 +69,16 @@ export function EventGranularityDemo() {
     return colorMap[color as keyof typeof colorMap] || colorMap.green
   }
   const currentScenario = scenarios[granularityType]
-  const items = 'problems' in currentScenario ? currentScenario.problems : currentScenario.benefits
+  // Type-safe way to get the items array
+  const getScenarioItems = (scenario: Scenario): string[] => {
+    if ('problems' in scenario) {
+      return scenario.problems
+    } else {
+      return scenario.benefits
+    }
+  }
+  const items = getScenarioItems(currentScenario)
+  const isProblemsScenario = 'problems' in currentScenario
   return (
     <div className="bg-white p-8 rounded-xl shadow-sm border">
       <h3 className="text-2xl font-bold mb-6 text-gray-900">🎯 Event Granularity: Finding the Sweet Spot</h3>
@@ -77,7 +86,7 @@ export function EventGranularityDemo() {
         {Object.entries(scenarios).map(([key, scenario]) => (
           <button
             key={key}
-            onClick={() => setGranularityType(key as any)}
+            onClick={() => setGranularityType(key as 'coarse' | 'fine' | 'balanced')}
             className={`p-4 rounded-lg border-2 transition-all ${
               granularityType === key
                 ? `${getColorClasses(scenario.color).border} ${getColorClasses(scenario.color).light} scale-105`
@@ -132,7 +141,7 @@ export function EventGranularityDemo() {
           </div>
           <div>
             <h5 className="font-semibold text-gray-900 mb-4">
-              {granularityType === 'balanced' ? 'Benefits:' : 'Problems:'}
+              {isProblemsScenario ? 'Problems:' : 'Benefits:'}
             </h5>
             <ul className="space-y-2">
               {items.map((item, index) => (
