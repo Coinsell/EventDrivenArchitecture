@@ -31,9 +31,9 @@ export function LooseCouplingDemo() {
     }
     return colorMap[color as keyof typeof colorMap] || colorMap.blue
   }
-  const renderServiceIcon = (service: typeof services[0], isActive: boolean = false) => {
+  const renderServiceIcon = (service: typeof services[0]) => {
     const IconComponent = service.icon
-    return <IconComponent className={`w-6 h-6 ${isActive ? 'text-white' : 'text-white'}`} />
+    return <IconComponent className="w-6 h-6 text-white" />
   }
   return (
     <div className="bg-white p-8 rounded-xl shadow-sm border">
@@ -72,7 +72,7 @@ export function LooseCouplingDemo() {
           </div>
         </button>
       </div>
-      <div className="relative bg-gradient-to-r from-gray-50 to-gray-100 p-8 rounded-lg border overflow-hidden" style={{ height: '400px' }}>
+      <div className="relative bg-gradient-to-r from-gray-50 to-gray-100 p-8 rounded-lg border overflow-hidden" style={{ height: '500px' }}>
         {/* Order Service - Left Side */}
         <div className="absolute left-8 top-1/2 transform -translate-y-1/2">
           <div className={`w-20 h-20 rounded-xl flex items-center justify-center shadow-lg transition-all duration-500 ${
@@ -80,8 +80,8 @@ export function LooseCouplingDemo() {
           }`}>
             <Users className="w-10 h-10 text-white" />
           </div>
-          <div className="text-center mt-3 max-w-20">
-            <div className="font-semibold text-gray-900 text-sm">Order Service</div>
+          <div className="text-center mt-4 w-20">
+            <div className="font-semibold text-gray-900 text-sm leading-tight">Order Service</div>
             <div className="text-xs text-gray-600 mt-1">Producer</div>
           </div>
         </div>
@@ -95,8 +95,8 @@ export function LooseCouplingDemo() {
                 <div
                   className="absolute transform -translate-x-1/2 -translate-y-1/2 transition-all duration-500"
                   style={{
-                    right: '80px',
-                    top: `${25 + index * 15}%`
+                    right: '60px',
+                    top: `${20 + index * 18}%`
                   }}
                 >
                   <div className={`w-16 h-16 rounded-xl flex items-center justify-center shadow-lg transition-all duration-500 ${
@@ -104,10 +104,10 @@ export function LooseCouplingDemo() {
                       ? getColorClasses(service.color).bg + ' scale-110' 
                       : 'bg-gray-400 scale-100'
                   }`}>
-                    {renderServiceIcon(service, true)}
+                    {renderServiceIcon(service)}
                   </div>
-                  <div className="text-center mt-2 max-w-16">
-                    <div className={`text-xs font-medium transition-colors ${
+                  <div className="text-center mt-3 w-16">
+                    <div className={`text-xs font-medium transition-colors leading-tight ${
                       activeConnection === index ? 'text-gray-900' : 'text-gray-500'
                     }`}>
                       {service.name}
@@ -119,7 +119,7 @@ export function LooseCouplingDemo() {
                   className="absolute pointer-events-none"
                   style={{
                     left: '120px',
-                    top: `${25 + index * 15}%`,
+                    top: `${20 + index * 18}%`,
                     width: 'calc(100% - 240px)',
                     height: '2px',
                     transform: 'translateY(-1px)'
@@ -148,8 +148,8 @@ export function LooseCouplingDemo() {
                 <div
                   className="absolute transform -translate-y-1/2 transition-all duration-300"
                   style={{
-                    right: '160px',
-                    top: `${25 + index * 15}%`
+                    right: '140px',
+                    top: `${20 + index * 18}%`
                   }}
                 >
                   <ArrowRight className={`w-6 h-6 transition-colors ${
@@ -159,13 +159,13 @@ export function LooseCouplingDemo() {
                 {/* API Call Label */}
                 {activeConnection === index && (
                   <div
-                    className="absolute transform -translate-x-1/2 -translate-y-1/2 transition-all duration-300"
+                    className="absolute transform -translate-x-1/2 transition-all duration-300"
                     style={{
                       left: '50%',
-                      top: `${25 + index * 15 - 5}%`
+                      top: `${20 + index * 18 - 8}%`
                     }}
                   >
-                    <div className="bg-red-100 text-red-800 px-2 py-1 rounded text-xs font-medium animate-pulse">
+                    <div className="bg-red-100 text-red-800 px-2 py-1 rounded text-xs font-medium animate-pulse whitespace-nowrap">
                       Direct API Call
                     </div>
                   </div>
@@ -173,9 +173,9 @@ export function LooseCouplingDemo() {
               </div>
             ))}
             {/* Problem Alert */}
-            <div className="absolute bottom-4 left-4 right-4 p-4 bg-red-50 rounded-lg border-2 border-red-200 animate-pulse">
+            <div className="absolute bottom-4 left-4 right-4 p-4 bg-red-50 rounded-lg border-2 border-red-200">
               <div className="flex items-start space-x-3">
-                <X className="w-5 h-5 text-red-600 mt-0.5" />
+                <X className="w-5 h-5 text-red-600 mt-0.5 flex-shrink-0" />
                 <div>
                   <p className="text-red-800 text-sm font-medium">
                     <strong>Problem:</strong> Order Service must know about all downstream services.
@@ -195,15 +195,15 @@ export function LooseCouplingDemo() {
               <div className="w-20 h-20 bg-yellow-500 rounded-xl flex items-center justify-center shadow-lg animate-pulse">
                 <Mail className="w-10 h-10 text-white" />
               </div>
-              <div className="text-center mt-3 max-w-20">
-                <div className="font-semibold text-gray-900 text-sm">Event Grid</div>
+              <div className="text-center mt-4 w-20">
+                <div className="font-semibold text-gray-900 text-sm leading-tight">Event Grid</div>
                 <div className="text-xs text-gray-600 mt-1">Dispatcher</div>
               </div>
             </div>
             {/* Arrow from Order to Event Grid */}
-            <div className="absolute left-28 top-1/2 transform -translate-y-1/2">
+            <div className="absolute left-32 top-1/2 transform -translate-y-1/2">
               <ArrowRight className="w-8 h-8 text-green-500 animate-bounce" />
-              <div className="text-xs text-green-600 mt-1 font-medium">Publish Event</div>
+              <div className="text-xs text-green-600 mt-2 font-medium whitespace-nowrap">Publish Event</div>
             </div>
             {/* Services around Event Grid */}
             {services.map((service, index) => (
@@ -212,17 +212,17 @@ export function LooseCouplingDemo() {
                 <div
                   className="absolute transform -translate-x-1/2 -translate-y-1/2 transition-all duration-700"
                   style={{
-                    right: '80px',
-                    top: `${25 + index * 15}%`
+                    right: '60px',
+                    top: `${20 + index * 18}%`
                   }}
                 >
                   <div className={`w-16 h-16 rounded-xl flex items-center justify-center shadow-lg ${
                     getColorClasses(service.color).bg
                   } animate-pulse`} style={{ animationDelay: `${index * 200}ms` }}>
-                    {renderServiceIcon(service, true)}
+                    {renderServiceIcon(service)}
                   </div>
-                  <div className="text-center mt-2 max-w-16">
-                    <div className="text-xs font-medium text-gray-900">{service.name}</div>
+                  <div className="text-center mt-3 w-16">
+                    <div className="text-xs font-medium text-gray-900 leading-tight">{service.name}</div>
                   </div>
                 </div>
                 {/* Dashed line from Event Grid to Service */}
@@ -232,15 +232,15 @@ export function LooseCouplingDemo() {
                     left: '60%',
                     top: '50%',
                     width: '30%',
-                    height: `${Math.abs((25 + index * 15) - 50)}%`,
-                    transform: `translateY(${(25 + index * 15) > 50 ? '0' : '-100'}%)`
+                    height: `${Math.abs((20 + index * 18) - 50)}%`,
+                    transform: `translateY(${(20 + index * 18) > 50 ? '0' : '-100'}%)`
                   }}
                 >
                   <line
                     x1="0"
-                    y1={`${(25 + index * 15) > 50 ? '0' : '100'}%`}
+                    y1={`${(20 + index * 18) > 50 ? '0' : '100'}%`}
                     x2="100%"
-                    y2={`${(25 + index * 15) > 50 ? '100' : '0'}%`}
+                    y2={`${(20 + index * 18) > 50 ? '100' : '0'}%`}
                     stroke={getColorClasses(service.color).text.replace('text-', '')}
                     strokeWidth="2"
                     strokeDasharray="8,4"
@@ -252,11 +252,11 @@ export function LooseCouplingDemo() {
                 <div
                   className="absolute transform -translate-x-1/2 transition-all duration-500"
                   style={{
-                    right: '40px',
-                    top: `${25 + index * 15 + (index % 2 === 0 ? -3 : 3)}%`
+                    right: '20px',
+                    top: `${20 + index * 18 + (index % 2 === 0 ? -6 : 6)}%`
                   }}
                 >
-                  <div className={`${getColorClasses(service.color).light} ${getColorClasses(service.color).text} px-2 py-1 rounded text-xs font-medium animate-pulse border ${getColorClasses(service.color).border}`}
+                  <div className={`${getColorClasses(service.color).light} ${getColorClasses(service.color).text} px-2 py-1 rounded text-xs font-medium animate-pulse border ${getColorClasses(service.color).border} whitespace-nowrap`}
                        style={{ animationDelay: `${index * 400}ms` }}>
                     Subscribe
                   </div>
@@ -266,7 +266,7 @@ export function LooseCouplingDemo() {
             {/* Success Alert */}
             <div className="absolute bottom-4 left-4 right-4 p-4 bg-green-50 rounded-lg border-2 border-green-200">
               <div className="flex items-start space-x-3">
-                <Zap className="w-5 h-5 text-green-600 mt-0.5" />
+                <Zap className="w-5 h-5 text-green-600 mt-0.5 flex-shrink-0" />
                 <div>
                   <p className="text-green-800 text-sm font-medium">
                     <strong>Solution:</strong> Order Service only knows about Event Grid.
