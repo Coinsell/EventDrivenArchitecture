@@ -19,6 +19,10 @@ import { EventHubArchitecture } from './EventHubArchitecture'
 import { EventHubUseCases } from './EventHubUseCases'
 import { UberExample } from './UberExample'
 import { EventHubVsKafka } from './EventHubVsKafka'
+import { ServicesComparison } from './ServicesComparison'
+import { DetailedComparison } from './DetailedComparison'
+import { RetailStoreExample } from './RetailStoreExample'
+import { DecisionMatrix } from './DecisionMatrix'
 interface Topic {
   id: string
   title: string
@@ -400,10 +404,53 @@ export function TopicContent({ topic }: TopicContentProps) {
         )
       case 'comparison':
         return (
-          <div className="space-y-8">
+          <div className="space-y-12">
+            {/* Hero Section */}
+            <div className="bg-gradient-to-r from-purple-600 to-pink-600 text-white p-8 rounded-xl">
+              <h2 className="text-3xl font-bold mb-4">Service Comparison</h2>
+              <p className="text-xl opacity-90 mb-6">
+                Event Grid vs Event Hub vs Service Bus - choosing the right tool for the job
+              </p>
+              <div className="bg-white/10 p-4 rounded-lg">
+                <p className="text-lg">
+                  🎯 <strong>Key Insight:</strong> It's not about one being better - it's about choosing the right tool for the right job
+                </p>
+              </div>
+            </div>
+            {/* Services Overview */}
+            <ServicesComparison />
+            {/* Detailed Feature Comparison */}
+            <DetailedComparison />
+            {/* Real-World Example */}
+            <RetailStoreExample />
+            {/* Decision Matrix */}
+            <DecisionMatrix />
+            {/* Summary */}
             <div className="bg-white p-8 rounded-xl shadow-sm border">
-              <h2 className="text-2xl font-bold mb-6 text-gray-900">Service Comparison</h2>
-              <ComparisonTable />
+              <h3 className="text-2xl font-bold mb-6 text-gray-900">🎯 Key Takeaways</h3>
+              <div className="grid md:grid-cols-3 gap-6">
+                <div className="text-center p-6 bg-blue-50 rounded-lg border border-blue-200">
+                  <div className="w-16 h-16 bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                    <Zap className="w-8 h-8 text-blue-600" />
+                  </div>
+                  <h4 className="font-semibold text-blue-900 mb-2">Event Grid</h4>
+                  <p className="text-blue-800 text-sm">Lightweight notifications and automation</p>
+                </div>
+                <div className="text-center p-6 bg-orange-50 rounded-lg border border-orange-200">
+                  <div className="w-16 h-16 bg-orange-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                    <Database className="w-8 h-8 text-orange-600" />
+                  </div>
+                  <h4 className="font-semibold text-orange-900 mb-2">Event Hub</h4>
+                  <p className="text-orange-800 text-sm">Massive-scale, high-throughput streaming</p>
+                </div>
+                <div className="text-center p-6 bg-green-50 rounded-lg border border-green-200">
+                  <div className="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                    <Shield className="w-8 h-8 text-green-600" />
+                  </div>
+                  <h4 className="font-semibold text-green-900 mb-2">Service Bus</h4>
+                  <p className="text-green-800 text-sm">Guaranteed delivery, ordering, and reliability</p>
+                </div>
+              </div>
             </div>
           </div>
         )
