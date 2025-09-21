@@ -9,10 +9,11 @@ import { UberEventFlow } from './UberEventFlow'
 import { ScalabilityDemo } from './ScalabilityDemo'
 import { AsyncProcessingDemo } from './AsyncProcessingDemo'
 import { EventGridOverview } from './EventGridOverview'
+import { EventGridConcepts } from './EventGridConcepts'
 import { EventGridFlow } from './EventGridFlow'
-import { EventGridBenefits } from './EventGridBenefits'
 import { PhotoSharingExample } from './PhotoSharingExample'
-import { SmartHomeDemo } from './SmartHomeDemo'
+import { SmartHomeExercise } from './SmartHomeExercise'
+import { NewsAnalogy } from './NewsAnalogy'
 interface Topic {
   id: string
   title: string
@@ -248,107 +249,70 @@ export function TopicContent({ topic }: TopicContentProps) {
         return (
           <div className="space-y-12">
             {/* Hero Section */}
-            <div className="bg-gradient-to-r from-blue-600 to-azure-600 text-white p-8 rounded-xl">
+            <div className="bg-gradient-to-r from-blue-600 to-indigo-600 text-white p-8 rounded-xl">
               <h2 className="text-3xl font-bold mb-4">Azure Event Grid Overview</h2>
               <p className="text-xl opacity-90 mb-6">
-                The post office of Azure events - delivering messages reliably at scale
+                The post office of Azure events - delivering messages reliably and at scale
               </p>
               <div className="bg-white/10 p-4 rounded-lg">
                 <p className="text-lg">
-                  🏢 <strong>Think of it as:</strong> The central nervous system for events in your Azure environment
+                  🏢 <strong>Central Nervous System:</strong> Event Grid connects all your Azure services through events
                 </p>
               </div>
             </div>
             {/* Event Grid Overview */}
             <EventGridOverview />
-            {/* Event Grid Flow */}
+            {/* Key Concepts */}
+            <EventGridConcepts />
+            {/* Event Flow */}
             <EventGridFlow />
-            {/* Event Grid Benefits */}
-            <EventGridBenefits />
             {/* Photo Sharing Example */}
             <PhotoSharingExample />
-            {/* Smart Home Demo */}
-            <SmartHomeDemo />
-            {/* News Broadcaster Analogy */}
-            <div className="bg-gradient-to-r from-purple-50 to-pink-50 p-8 rounded-xl border border-purple-200">
-              <h3 className="text-2xl font-bold mb-6 text-gray-900">📺 News Broadcaster Analogy</h3>
-              <div className="grid md:grid-cols-3 gap-6">
-                <div className="bg-white p-6 rounded-lg shadow-sm border">
-                  <div className="w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center mb-4">
-                    <span className="text-2xl">📰</span>
-                  </div>
-                  <h4 className="font-semibold text-gray-900 mb-2">News Agencies</h4>
-                  <p className="text-gray-600 text-sm">
-                    Event Sources - Publish stories (events) to the broadcaster
-                  </p>
-                </div>
-                <div className="bg-white p-6 rounded-lg shadow-sm border">
-                  <div className="w-12 h-12 bg-yellow-100 rounded-lg flex items-center justify-center mb-4">
-                    <span className="text-2xl">📡</span>
-                  </div>
-                  <h4 className="font-semibold text-gray-900 mb-2">Event Grid</h4>
-                  <p className="text-gray-600 text-sm">
-                    The Broadcaster - Routes stories to interested subscribers
-                  </p>
-                </div>
-                <div className="bg-white p-6 rounded-lg shadow-sm border">
-                  <div className="w-12 h-12 bg-green-100 rounded-lg flex items-center justify-center mb-4">
-                    <span className="text-2xl">👥</span>
-                  </div>
-                  <h4 className="font-semibold text-gray-900 mb-2">Subscribers</h4>
-                  <p className="text-gray-600 text-sm">
-                    Event Handlers - Choose which news they want (sports, finance, weather)
-                  </p>
-                </div>
-              </div>
-              <div className="mt-6 p-4 bg-white rounded-lg border">
-                <p className="text-gray-700">
-                  <strong>Key Insight:</strong> Everyone gets only the events they care about, 
-                  without direct dependency on the source!
-                </p>
-              </div>
-            </div>
-            {/* Key Takeaways */}
+            {/* News Analogy */}
+            <NewsAnalogy />
+            {/* Smart Home Exercise */}
+            <SmartHomeExercise />
+            {/* Benefits Summary */}
             <div className="bg-white p-8 rounded-xl shadow-sm border">
               <h3 className="text-2xl font-bold mb-6 text-gray-900">🎯 Key Takeaways</h3>
               <div className="grid md:grid-cols-2 gap-6">
                 <div className="space-y-4">
                   <div className="flex items-start space-x-3">
                     <div className="w-6 h-6 bg-blue-100 rounded-full flex items-center justify-center mt-1">
-                      <span className="text-blue-600 text-xs font-bold">1</span>
+                      <Zap className="w-3 h-3 text-blue-600" />
                     </div>
                     <div>
                       <h4 className="font-semibold text-gray-900">Event Routing Backbone</h4>
-                      <p className="text-gray-600 text-sm">Azure's central event routing service</p>
+                      <p className="text-gray-600 text-sm">Central hub for all Azure event communication</p>
                     </div>
                   </div>
                   <div className="flex items-start space-x-3">
                     <div className="w-6 h-6 bg-green-100 rounded-full flex items-center justify-center mt-1">
-                      <span className="text-green-600 text-xs font-bold">2</span>
+                      <Target className="w-3 h-3 text-green-600" />
                     </div>
                     <div>
                       <h4 className="font-semibold text-gray-900">Topics & Subscriptions</h4>
-                      <p className="text-gray-600 text-sm">Connects sources and handlers seamlessly</p>
+                      <p className="text-gray-600 text-sm">Flexible event routing with smart filtering</p>
                     </div>
                   </div>
                 </div>
                 <div className="space-y-4">
                   <div className="flex items-start space-x-3">
                     <div className="w-6 h-6 bg-purple-100 rounded-full flex items-center justify-center mt-1">
-                      <span className="text-purple-600 text-xs font-bold">3</span>
+                      <Database className="w-3 h-3 text-purple-600" />
                     </div>
                     <div>
-                      <h4 className="font-semibold text-gray-900">Simple & Scalable</h4>
-                      <p className="text-gray-600 text-sm">Handles millions of events reliably</p>
+                      <h4 className="font-semibold text-gray-900">Scalable & Reliable</h4>
+                      <p className="text-gray-600 text-sm">Millions of events per second with guaranteed delivery</p>
                     </div>
                   </div>
                   <div className="flex items-start space-x-3">
                     <div className="w-6 h-6 bg-yellow-100 rounded-full flex items-center justify-center mt-1">
-                      <span className="text-yellow-600 text-xs font-bold">4</span>
+                      <Settings className="w-3 h-3 text-yellow-600" />
                     </div>
                     <div>
-                      <h4 className="font-semibold text-gray-900">Serverless Ready</h4>
-                      <p className="text-gray-600 text-sm">Perfect for event-driven serverless apps</p>
+                      <h4 className="font-semibold text-gray-900">Perfect for Serverless</h4>
+                      <p className="text-gray-600 text-sm">Ideal for event-driven, serverless applications</p>
                     </div>
                   </div>
                 </div>
