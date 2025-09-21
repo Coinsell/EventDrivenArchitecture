@@ -27,6 +27,10 @@ import { OrderProcessingArchitecture } from './OrderProcessingArchitecture'
 import { TraditionalVsEventDriven } from './TraditionalVsEventDriven'
 import { BlackFridayScenario } from './BlackFridayScenario'
 import { EventDrivenBenefits } from './EventDrivenBenefits'
+import { DesignPrinciples } from './DesignPrinciples'
+import { LooseCouplingDemo } from './LooseCouplingDemo'
+import { EventGranularityDemo } from './EventGranularityDemo'
+import { IdempotencyDemo } from './IdempotencyDemo'
 interface Topic {
   id: string
   title: string
@@ -527,6 +531,96 @@ export function TopicContent({ topic }: TopicContentProps) {
                     </div>
                   </div>
                 </div>
+              </div>
+            </div>
+          </div>
+        )
+      case 'design-principles':
+        return (
+          <div className="space-y-12">
+            {/* Hero Section */}
+            <div className="bg-gradient-to-r from-emerald-600 to-teal-600 text-white p-8 rounded-xl">
+              <h2 className="text-3xl font-bold mb-4">Design Principles for Event-Driven Apps</h2>
+              <p className="text-xl opacity-90 mb-6">
+                Seven fundamental principles for building robust, scalable event-driven applications
+              </p>
+              <div className="bg-white/10 p-4 rounded-lg">
+                <p className="text-lg">
+                  ⚡ <strong>Great Power, Great Responsibility:</strong> Follow these principles to avoid messy architectures
+                </p>
+              </div>
+            </div>
+            {/* Design Principles Overview */}
+            <DesignPrinciples />
+            {/* Loose Coupling Demo */}
+            <LooseCouplingDemo />
+            {/* Event Granularity Demo */}
+            <EventGranularityDemo />
+            {/* Idempotency Demo */}
+            <IdempotencyDemo />
+            {/* Summary */}
+            <div className="bg-white p-8 rounded-xl shadow-sm border">
+              <h3 className="text-2xl font-bold mb-6 text-gray-900">📋 Design Principles Summary</h3>
+              <div className="grid md:grid-cols-2 gap-8">
+                <div className="space-y-4">
+                  <h4 className="text-lg font-semibold text-gray-900">Core Principles:</h4>
+                  <div className="space-y-3">
+                    <div className="flex items-center space-x-3">
+                      <div className="w-8 h-8 bg-blue-100 rounded-full flex items-center justify-center">
+                        <span className="text-blue-600 font-bold text-sm">1</span>
+                      </div>
+                      <span className="text-gray-700">Keep producers and consumers loosely coupled</span>
+                    </div>
+                    <div className="flex items-center space-x-3">
+                      <div className="w-8 h-8 bg-green-100 rounded-full flex items-center justify-center">
+                        <span className="text-green-600 font-bold text-sm">2</span>
+                      </div>
+                      <span className="text-gray-700">Use asynchronous communication</span>
+                    </div>
+                    <div className="flex items-center space-x-3">
+                      <div className="w-8 h-8 bg-purple-100 rounded-full flex items-center justify-center">
+                        <span className="text-purple-600 font-bold text-sm">3</span>
+                      </div>
+                      <span className="text-gray-700">Choose the right event granularity</span>
+                    </div>
+                    <div className="flex items-center space-x-3">
+                      <div className="w-8 h-8 bg-orange-100 rounded-full flex items-center justify-center">
+                        <span className="text-orange-600 font-bold text-sm">4</span>
+                      </div>
+                      <span className="text-gray-700">Make consumers idempotent</span>
+                    </div>
+                  </div>
+                </div>
+                <div className="space-y-4">
+                  <h4 className="text-lg font-semibold text-gray-900">Implementation Aspects:</h4>
+                  <div className="space-y-3">
+                    <div className="flex items-center space-x-3">
+                      <div className="w-8 h-8 bg-indigo-100 rounded-full flex items-center justify-center">
+                        <span className="text-indigo-600 font-bold text-sm">5</span>
+                      </div>
+                      <span className="text-gray-700">Define and version event schemas</span>
+                    </div>
+                    <div className="flex items-center space-x-3">
+                      <div className="w-8 h-8 bg-red-100 rounded-full flex items-center justify-center">
+                        <span className="text-red-600 font-bold text-sm">6</span>
+                      </div>
+                      <span className="text-gray-700">Implement security and governance</span>
+                    </div>
+                    <div className="flex items-center space-x-3">
+                      <div className="w-8 h-8 bg-yellow-100 rounded-full flex items-center justify-center">
+                        <span className="text-yellow-600 font-bold text-sm">7</span>
+                      </div>
+                      <span className="text-gray-700">Ensure monitoring and observability</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div className="mt-8 p-6 bg-gradient-to-r from-emerald-50 to-teal-50 rounded-lg border border-emerald-200">
+                <h5 className="font-semibold text-emerald-900 mb-3">🎯 Result</h5>
+                <p className="text-emerald-800">
+                  Follow these principles, and your app will be <strong>scalable</strong>, <strong>maintainable</strong>, 
+                  and <strong>robust</strong> — exactly what we need in modern cloud architectures.
+                </p>
               </div>
             </div>
           </div>
