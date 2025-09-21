@@ -14,6 +14,11 @@ import { EventGridFlow } from './EventGridFlow'
 import { PhotoSharingExample } from './PhotoSharingExample'
 import { SmartHomeExercise } from './SmartHomeExercise'
 import { NewsAnalogy } from './NewsAnalogy'
+import { EventHubOverview } from './EventHubOverview'
+import { EventHubArchitecture } from './EventHubArchitecture'
+import { EventHubUseCases } from './EventHubUseCases'
+import { UberExample } from './UberExample'
+import { EventHubVsKafka } from './EventHubVsKafka'
 interface Topic {
   id: string
   title: string
@@ -313,6 +318,79 @@ export function TopicContent({ topic }: TopicContentProps) {
                     <div>
                       <h4 className="font-semibold text-gray-900">Perfect for Serverless</h4>
                       <p className="text-gray-600 text-sm">Ideal for event-driven, serverless applications</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        )
+      case 'event-hub':
+        return (
+          <div className="space-y-12">
+            {/* Hero Section */}
+            <div className="bg-gradient-to-r from-orange-600 to-red-600 text-white p-8 rounded-xl">
+              <h2 className="text-3xl font-bold mb-4">Azure Event Hub Overview</h2>
+              <p className="text-xl opacity-90 mb-6">
+                Big data streaming platform and event ingestion service
+              </p>
+              <div className="bg-white/10 p-4 rounded-lg">
+                <p className="text-lg">
+                  🔥 <strong>The Massive Firehose:</strong> If Event Grid is the dispatcher, Event Hub is the streaming pipeline
+                </p>
+              </div>
+            </div>
+            {/* Event Hub Overview */}
+            <EventHubOverview />
+            {/* Architecture Flow */}
+            <EventHubArchitecture />
+            {/* Use Cases */}
+            <EventHubUseCases />
+            {/* Uber Example */}
+            <UberExample />
+            {/* Event Hub vs Kafka */}
+            <EventHubVsKafka />
+            {/* Key Takeaways */}
+            <div className="bg-white p-8 rounded-xl shadow-sm border">
+              <h3 className="text-2xl font-bold mb-6 text-gray-900">🎯 Key Takeaways</h3>
+              <div className="grid md:grid-cols-2 gap-6">
+                <div className="space-y-4">
+                  <div className="flex items-start space-x-3">
+                    <div className="w-6 h-6 bg-orange-100 rounded-full flex items-center justify-center mt-1">
+                      <Zap className="w-3 h-3 text-orange-600" />
+                    </div>
+                    <div>
+                      <h4 className="font-semibold text-gray-900">Big Data Streaming</h4>
+                      <p className="text-gray-600 text-sm">Azure's event ingestion pipeline for massive scale</p>
+                    </div>
+                  </div>
+                  <div className="flex items-start space-x-3">
+                    <div className="w-6 h-6 bg-red-100 rounded-full flex items-center justify-center mt-1">
+                      <Database className="w-3 h-3 text-red-600" />
+                    </div>
+                    <div>
+                      <h4 className="font-semibold text-gray-900">High-Throughput</h4>
+                      <p className="text-gray-600 text-sm">Millions of events per second with low latency</p>
+                    </div>
+                  </div>
+                </div>
+                <div className="space-y-4">
+                  <div className="flex items-start space-x-3">
+                    <div className="w-6 h-6 bg-green-100 rounded-full flex items-center justify-center mt-1">
+                      <Target className="w-3 h-3 text-green-600" />
+                    </div>
+                    <div>
+                      <h4 className="font-semibold text-gray-900">Real-Time Analytics</h4>
+                      <p className="text-gray-600 text-sm">Perfect for streaming analytics and insights</p>
+                    </div>
+                  </div>
+                  <div className="flex items-start space-x-3">
+                    <div className="w-6 h-6 bg-purple-100 rounded-full flex items-center justify-center mt-1">
+                      <Settings className="w-3 h-3 text-purple-600" />
+                    </div>
+                    <div>
+                      <h4 className="font-semibold text-gray-900">Kafka Compatible</h4>
+                      <p className="text-gray-600 text-sm">Seamless migration from existing Kafka workloads</p>
                     </div>
                   </div>
                 </div>
